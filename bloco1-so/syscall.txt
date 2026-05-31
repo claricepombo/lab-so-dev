@@ -10,9 +10,9 @@
 Saída filtrada:
 
 # Anote:
-#   Argumento 1 (file descriptor):
-#   O que está sendo escrito:
-#   Valor de retorno:
+#   Argumento 1 (file descriptor): 1
+#   O que está sendo escrito: "ola\n"
+#   Valor de retorno:4
 
 fd: 1
 conteúdo: "ola\n"
@@ -30,10 +30,8 @@ int main() {
     return 0;
 }
 
-
 # Cole aqui a linha write(...) da saída de strace -o strace.txt ./syscall_direto:
-
-[saída do strace]
+write(1, "ola\n", 4) = 4
 
 
 # PARTE C — Questões de síntese
@@ -43,7 +41,8 @@ int main() {
 #    de usuário consegue fazer I/O sem executar instruções privilegiadas diretamente.
 
 Resposta 1:
-
+Resposta 1:
+O programa não faz o I/O diretamente. Ele faz uma chamada de sistema (syscall) para o sistema operacional, que realiza a operação e devolve o resultado ao programa.
 
 # 2. Na apresentação sobre a genealogia do software, vimos que os programas de canal
 #    eram responsáveis por intermediar a transferência de dados entre a memória e os
@@ -51,3 +50,5 @@ Resposta 1:
 #    operacional moderno herda esse papel? 
 
 Resposta 2:
+Resposta 2:
+Hoje esse papel é feito principalmente pelos drivers de dispositivos e pelo DMA, que ajudam na comunicação entre a memória e os dispositivos sem precisar da CPU o tempo todo.
